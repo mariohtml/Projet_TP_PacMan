@@ -198,14 +198,17 @@ function refresh(){
     affichePacman() ;   
     afficheScore();
 	afficheFantome0();
-    
+    boom();
+	if(boom()) {}
 }
 refresh();
 document.body.addEventListener("keydown",appuiTouche);
 /*console.log("je rafraichi ma page");*/
 
-function Boom(){
+function boom(){
     if(pacman.x==fantome0.x && pacman.y==fantome0.y) {
-       window.alert("Game over" ) //pacman est mort
+       alert("Game over"); //pacman est mort
+	   return true;
     }
+	return false;
 }
