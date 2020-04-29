@@ -64,12 +64,12 @@ console.log(fin)
 	let fantome0 = {
   //position de départ de fantome0 sur la grille
    y:11, 
-   x:2,
+   x:10,
   //direction de départ de fantome0 (haut :4 , bas : 2, gauche : 3, droite : 1)
    direction: 1
  }
  
-  let score = 0
+
 
 function afficheGrille(){
    document.getElementById('grille').innerHTML = " "
@@ -168,6 +168,51 @@ function bougePacman(){
     
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+function bougeFantome0(){
+	
+	fantome.direction=getRandomInt(4)
+
+    
+    if (fantome0.direction == 1){
+        fantome0.x++
+    }
+
+    else if (fantome0.direction ==2) {
+        fantome0.y++
+    }
+
+    else if (fantome0.direction ==3) {
+        fantome0.x--
+    }
+
+    else if (fantome0.direction ==4) {
+        fantome0.y--
+    }
+        
+    if(maGrille[fantome0.y-1][fantome0.x-1]==0)
+{
+    if (fantome0.direction == 1){
+        fantome0.x--
+    }
+
+    else if (fantome0.direction ==2) {
+        fantome0.y--
+    }
+
+    else if (fantome0.direction ==3) {
+        fantome0.x++
+    }
+
+    else if (fantome0.direction ==4) {
+        fantome0.y++
+    }  
+}    
+}
+
 function appuiTouche(e){  //pour faire déplacer en appuyant sur les touches
     console.log(e.key)
     if(e.key=="z"){
@@ -184,6 +229,8 @@ function appuiTouche(e){  //pour faire déplacer en appuyant sur les touches
     }
 }
 
+  let score = 0
+
 function afficheScore(){
     document.getElementById('score').innerHTML = score;
 
@@ -196,12 +243,15 @@ function refresh(){
 	
     bougePacman();
 	if(boom()) {onContinue = false}
-    afficheGrille();
+	bougeFantome0();
+    if(boom()) {onContinue = false}
+	afficheGrille();
     affichePacman();
 	afficheFantome0();	
-    afficheScore();   
+    afficheScore();  
+	if(iwin()){onContinue = false}
 	if(onContinue == true){
-	setTimeout(refresh, 1000)
+	setTimeout(refresh, 100)
 	}
 }
 refresh();
@@ -214,4 +264,24 @@ function boom(){
 	   return true;
     }
 	return false;
+}
+
+function iwin(){
+
+  let compteur = 0
+
+  for(let i in maGrille){
+
+      for (let j in maGrille[i]){
+
+          if(maGrille[i][j]==2) {
+              compteur ++
+          }
+      }
+  }
+if (compteur==0){
+  alert ("gagné");
+return true;
+}
+return false
 }
