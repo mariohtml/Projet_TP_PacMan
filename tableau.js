@@ -192,14 +192,17 @@ function afficheScore(){
 
 
 function refresh(){
-    setTimeout(refresh, 1000);
+    let onContinue = true
+	
     bougePacman();
+	if(boom()) {onContinue = false}
     afficheGrille();
-    affichePacman() ;   
-    afficheScore();
-	afficheFantome0();
-    boom();
-	if(boom()) {}
+    affichePacman();
+	afficheFantome0();	
+    afficheScore();   
+	if(onContinue == true){
+	setTimeout(refresh, 1000)
+	}
 }
 refresh();
 document.body.addEventListener("keydown",appuiTouche);
