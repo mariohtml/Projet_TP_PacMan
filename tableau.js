@@ -173,9 +173,8 @@ function getRandomInt(max) {
   }
 
 function bougeFantome0(){
-	
-	fantome.direction=getRandomInt(4)
 
+    fantome0.direction=getRandomInt(4)
     
     if (fantome0.direction == 1){
         fantome0.x++
@@ -192,25 +191,24 @@ function bougeFantome0(){
     else if (fantome0.direction ==4) {
         fantome0.y--
     }
-        
     if(maGrille[fantome0.y-1][fantome0.x-1]==0)
-{
-    if (fantome0.direction == 1){
-        fantome0.x--
-    }
-
-    else if (fantome0.direction ==2) {
-        fantome0.y--
-    }
-
-    else if (fantome0.direction ==3) {
-        fantome0.x++
-    }
-
-    else if (fantome0.direction ==4) {
-        fantome0.y++
-    }  
-}    
+    {
+        if (fantome0.direction == 1){
+            fantome0.x--
+        }
+    
+        else if (fantome0.direction ==2) {
+            fantome0.y--
+        }
+    
+        else if (fantome0.direction ==3) {
+            fantome0.x++
+        }
+    
+        else if (fantome0.direction ==4) {
+            fantome0.y++
+        }  
+    }    
 }
 
 function appuiTouche(e){  //pour faire déplacer en appuyant sur les touches
