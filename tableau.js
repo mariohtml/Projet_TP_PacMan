@@ -204,8 +204,8 @@ refresh();
 document.body.addEventListener("keydown",appuiTouche);
 /*console.log("je rafraichi ma page");*/
 
-function GameOver(){
-    if(pacman.x==fantome0.x || pacman.y==fantome0.y) {
-        //pacman is dead
+function Boom(){
+    if(pacman.x==fantome0.x && pacman.y==fantome0.y) {
+       window.alert("Game over" ) //pacman est mort
     }
 }
